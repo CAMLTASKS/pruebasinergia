@@ -6,7 +6,10 @@
 <div class="container py-4">
   <div class="text-center mb-5">
     <h2 class="fw-bold mb-3">Bienvenido al Panel de Control</h2>
-    <p>Selecciona una opción del menú o de las tarjetas para gestionar los módulos del sistema.</p>
+    <center>
+      <img src="https://sinergiaonline.com/wp-content/uploads/2025/03/logo-color-sinergia@2x.png" alt="">
+    </center>
+    <p>Aqui podras ver y administrar cada uno de los modulos solicitados en la prueba, de acuerdo a ello por este medio podras tambien ver la respuesta a las preguntas de la prueba tecnica para facilidad.</p>
   </div>
 
   <div class="row g-4">
@@ -87,16 +90,7 @@
       </div>
     </div>
 
-    <div class="col-md-4">
-      <div class="card h-100 shadow-sm border-0">
-        <div class="card-body text-center">
-          <i class="bi bi-gear display-5 text-primary mb-3"></i>
-          <h5>Configuración</h5>
-          <p>Administra parámetros generales del sistema.</p>
-          <a href="/configuracion" class="btn btn-outline-primary btn-sm">Ver módulo</a>
-        </div>
-      </div>
-    </div>
+
   </div>
 </div>
 @endsection

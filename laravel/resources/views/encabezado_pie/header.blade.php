@@ -14,7 +14,6 @@
         <li class="nav-item"><a href="/departamentos" class="nav-link"><i class="bi bi-building"></i> Departamentos</a></li>
         <li class="nav-item"><a href="/municipios" class="nav-link"><i class="bi bi-geo-alt"></i> Municipios</a></li>
         <li class="nav-item"><a href="/tipos-documento" class="nav-link"><i class="bi bi-file-earmark-text"></i> Tipos Documento</a></li>
-        <li class="nav-item"><a href="/configuracion" class="nav-link"><i class="bi bi-gear"></i> Configuración</a></li>
         <button id="btnLogout" class="btn btn-outline-danger btn-sm">
         <i class="bi bi-box-arrow-right"></i> Cerrar sesión
       </button>
