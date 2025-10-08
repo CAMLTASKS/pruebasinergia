@@ -7,59 +7,62 @@ use Illuminate\Http\Request;
 
 class PacienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return response()->json(Paciente::with(['departamento', 'municipio', 'genero', 'tipoDocumento'])->get(), 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function show($id)
     {
-        //
+        $paciente = Paciente::with(['departamento', 'municipio', 'genero', 'tipoDocumento'])->find($id);
+        if (!$paciente) {
+            return response()->json(['error' => 'Paciente no encontrado'], 404);
+        }
+        return response()->json($paciente, 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'tipo_documento_id' => 'required|exists:tipos_documento,id',
+            'numero_documento' => 'required|numeric|unique:paciente,numero_documento',
+            'nombre1' => 'required|string|max:100',
+            'nombre2' => 'nullable|string|max:100',
+            'apellido1' => 'required|string|max:100',
+            'apellido2' => 'nullable|string|max:100',
+            'genero_id' => 'required|exists:genero,id',
+            'departamento_id' => 'required|exists:departamentos,id',
+            'municipio_id' => 'required|exists:municipios,id',
+            'correo' => 'required|email',
+        ]);
+
+        $paciente = Paciente::create($validated);
+        return response()->json($paciente, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Paciente $paciente)
+    public function update(Request $request, $id)
     {
-        //
+        $paciente = Paciente::find($id);
+        if (!$paciente) {
+            return response()->json(['error' => 'Paciente no encontrado'], 404);
+        }
+
+        $validated = $request->validate([
+            'numero_documento' => 'sometimes|numeric|unique:paciente,numero_documento,' . $id,
+            'correo' => 'sometimes|email',
+        ]);
+
+        $paciente->update($validated);
+        return response()->json($paciente, 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Paciente $paciente)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Paciente $paciente)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Paciente $paciente)
-    {
-        //
+        $paciente = Paciente::find($id);
+        if (!$paciente) {
+            return response()->json(['error' => 'Paciente no encontrado'], 404);
+        }
+        $paciente->delete();
+        return response()->json(['message' => 'Paciente eliminado correctamente'], 200);
     }
 }

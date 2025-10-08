@@ -7,59 +7,44 @@ use Illuminate\Http\Request;
 
 class GeneroController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return response()->json(Genero::all(), 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function show($id)
     {
-        //
+        $genero = Genero::find($id);
+        if (!$genero) {
+            return response()->json(['error' => 'Género no encontrado'], 404);
+        }
+        return response()->json($genero, 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate(['nombre' => 'required|string|max:100']);
+        $genero = Genero::create($validated);
+        return response()->json($genero, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Genero $genero)
+    public function update(Request $request, $id)
     {
-        //
+        $genero = Genero::find($id);
+        if (!$genero) {
+            return response()->json(['error' => 'Género no encontrado'], 404);
+        }
+        $genero->update($request->only('nombre'));
+        return response()->json($genero, 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Genero $genero)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Genero $genero)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Genero $genero)
-    {
-        //
+        $genero = Genero::find($id);
+        if (!$genero) {
+            return response()->json(['error' => 'Género no encontrado'], 404);
+        }
+        $genero->delete();
+        return response()->json(['message' => 'Género eliminado correctamente'], 200);
     }
 }

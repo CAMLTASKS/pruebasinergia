@@ -13,7 +13,7 @@ use App\Http\Controllers\{
 
 
 
-Route::get('/ping', function () {
+Route::get('/prueba', function () {
     return response()->json(['status' => 'API funcionando correctamente']);
 });
 

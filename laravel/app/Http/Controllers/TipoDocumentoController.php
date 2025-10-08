@@ -7,59 +7,44 @@ use Illuminate\Http\Request;
 
 class TipoDocumentoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return response()->json(TipoDocumento::all(), 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function show($id)
     {
-        //
+        $tipo = TipoDocumento::find($id);
+        if (!$tipo) {
+            return response()->json(['error' => 'Tipo de documento no encontrado'], 404);
+        }
+        return response()->json($tipo, 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate(['nombre' => 'required|string|max:100']);
+        $tipo = TipoDocumento::create($validated);
+        return response()->json($tipo, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(TipoDocumento $tipoDocumento)
+    public function update(Request $request, $id)
     {
-        //
+        $tipo = TipoDocumento::find($id);
+        if (!$tipo) {
+            return response()->json(['error' => 'Tipo de documento no encontrado'], 404);
+        }
+        $tipo->update($request->only('nombre'));
+        return response()->json($tipo, 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(TipoDocumento $tipoDocumento)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, TipoDocumento $tipoDocumento)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(TipoDocumento $tipoDocumento)
-    {
-        //
+        $tipo = TipoDocumento::find($id);
+        if (!$tipo) {
+            return response()->json(['error' => 'Tipo de documento no encontrado'], 404);
+        }
+        $tipo->delete();
+        return response()->json(['message' => 'Tipo de documento eliminado correctamente'], 200);
     }
 }

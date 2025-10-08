@@ -7,59 +7,48 @@ use Illuminate\Http\Request;
 
 class MunicipioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return response()->json(Municipio::all(), 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function show($id)
     {
-        //
+        $municipio = Municipio::find($id);
+        if (!$municipio) {
+            return response()->json(['error' => 'Municipio no encontrado'], 404);
+        }
+        return response()->json($municipio, 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'id_departamento' => 'required|integer|exists:departamentos,id',
+            'nombre' => 'required|string|max:100',
+        ]);
+
+        $municipio = Municipio::create($validated);
+        return response()->json($municipio, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Municipio $municipio)
+    public function update(Request $request, $id)
     {
-        //
+        $municipio = Municipio::find($id);
+        if (!$municipio) {
+            return response()->json(['error' => 'Municipio no encontrado'], 404);
+        }
+        $municipio->update($request->only(['id_departamento', 'nombre']));
+        return response()->json($municipio, 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Municipio $municipio)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Municipio $municipio)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Municipio $municipio)
-    {
-        //
+        $municipio = Municipio::find($id);
+        if (!$municipio) {
+            return response()->json(['error' => 'Municipio no encontrado'], 404);
+        }
+        $municipio->delete();
+        return response()->json(['message' => 'Municipio eliminado correctamente'], 200);
     }
 }
