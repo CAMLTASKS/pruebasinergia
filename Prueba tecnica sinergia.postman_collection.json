@@ -1,236 +1,690 @@
 {
-  "info": {
-    "_postman_id": "d384d93d-a090-4659-9c86-6bccebc40470",
-    "name": "Prueba tecnica sinergia",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "variable": [
-    {
-      "key": "url",
-      "value": "http://localhost:8080/api/"
-    }
-  ],
-  "item": [
-    {
-      "name": "Ping",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": "{{url}}ping"
-      }
-    },
-    {
-      "name": "Departamentos",
-      "item": [
-        {
-          "name": "Listar departamentos",
-          "request": { "method": "GET", "url": "{{url}}departamentos" }
-        },
-        {
-          "name": "Crear departamento",
-          "request": {
-            "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n    \"nombre\": \"Meta\"\n}" },
-            "url": "{{url}}departamentos"
-          }
-        },
-        {
-          "name": "Mostrar departamento",
-          "request": { "method": "GET", "url": "{{url}}departamentos/1" }
-        },
-        {
-          "name": "Actualizar departamento",
-          "request": {
-            "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n    \"nombre\": \"Antioquia Actualizado\"\n}" },
-            "url": "{{url}}departamentos/1"
-          }
-        },
-        {
-          "name": "Eliminar departamento",
-          "request": { "method": "DELETE", "url": "{{url}}departamentos/1" }
-        }
-      ]
-    },
-    {
-      "name": "Municipios",
-      "item": [
-        {
-          "name": "Listar municipios",
-          "request": { "method": "GET", "url": "{{url}}municipios" }
-        },
-        {
-          "name": "Crear municipio",
-          "request": {
-            "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n    \"departamento_id\": 1,\n    \"nombre\": \"Medellín\"\n}" },
-            "url": "{{url}}municipios"
-          }
-        },
-        {
-          "name": "Mostrar municipio",
-          "request": { "method": "GET", "url": "{{url}}municipios/1" }
-        },
-        {
-          "name": "Actualizar municipio",
-          "request": {
-            "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n    \"nombre\": \"Bello\"\n}" },
-            "url": "{{url}}municipios/1"
-          }
-        },
-        {
-          "name": "Eliminar municipio",
-          "request": { "method": "DELETE", "url": "{{url}}municipios/1" }
-        }
-      ]
-    },
-    {
-      "name": "Tipos de documento",
-      "item": [
-        {
-          "name": "Listar tipos de documento",
-          "request": { "method": "GET", "url": "{{url}}tipos-documento" }
-        },
-        {
-          "name": "Crear tipo de documento",
-          "request": {
-            "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n    \"nombre\": \"Pasaporte\"\n}" },
-            "url": "{{url}}tipos-documento"
-          }
-        },
-        {
-          "name": "Mostrar tipo de documento",
-          "request": { "method": "GET", "url": "{{url}}tipos-documento/1" }
-        },
-        {
-          "name": "Actualizar tipo de documento",
-          "request": {
-            "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n    \"nombre\": \"Cédula de Extranjería\"\n}" },
-            "url": "{{url}}tipos-documento/1"
-          }
-        },
-        {
-          "name": "Eliminar tipo de documento",
-          "request": { "method": "DELETE", "url": "{{url}}tipos-documento/1" }
-        }
-      ]
-    },
-    {
-      "name": "Géneros",
-      "item": [
-        {
-          "name": "Listar géneros",
-          "request": { "method": "GET", "url": "{{url}}generos" }
-        },
-        {
-          "name": "Crear género",
-          "request": {
-            "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n    \"nombre\": \"Masculino\"\n}" },
-            "url": "{{url}}generos"
-          }
-        },
-        {
-          "name": "Mostrar género",
-          "request": { "method": "GET", "url": "{{url}}generos/1" }
-        },
-        {
-          "name": "Actualizar género",
-          "request": {
-            "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n    \"nombre\": \"Femenino\"\n}" },
-            "url": "{{url}}generos/1"
-          }
-        },
-        {
-          "name": "Eliminar género",
-          "request": { "method": "DELETE", "url": "{{url}}generos/1" }
-        }
-      ]
-    },
-    {
-      "name": "Pacientes",
-      "item": [
-        {
-          "name": "Listar pacientes",
-          "request": { "method": "GET", "url": "{{url}}pacientes" }
-        },
-        {
-          "name": "Crear paciente",
-          "request": {
-            "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"tipo_documento_id\": 1,\n    \"numero_documento\": 100000999,\n    \"nombre1\": \"Daniel\",\n    \"nombre2\": \"Felipe\",\n    \"apellido1\": \"Torres\",\n    \"apellido2\": \"López\",\n    \"genero_id\": 1,\n    \"departamento_id\": 2,\n    \"municipio_id\": 3,\n    \"correo\": \"daniel@example.com\"\n}"
-            },
-            "url": "{{url}}pacientes"
-          }
-        },
-        {
-          "name": "Mostrar paciente",
-          "request": { "method": "GET", "url": "{{url}}pacientes/1" }
-        },
-        {
-          "name": "Actualizar paciente",
-          "request": {
-            "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n    \"correo\": \"nuevo@example.com\"\n}" },
-            "url": "{{url}}pacientes/1"
-          }
-        },
-        {
-          "name": "Eliminar paciente",
-          "request": { "method": "DELETE", "url": "{{url}}pacientes/1" }
-        }
-      ]
-    },
-    {
-      "name": "Usuarios",
-      "item": [
-        {
-          "name": "Listar usuarios",
-          "request": { "method": "GET", "url": "{{url}}usuarios" }
-        },
-        {
-          "name": "Crear usuario",
-          "request": {
-            "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n    \"name\": \"Admin\",\n    \"email\": \"admin@example.com\",\n    \"password\": \"1234567890\"\n}" },
-            "url": "{{url}}usuarios"
-          }
-        },
-        {
-          "name": "Mostrar usuario",
-          "request": { "method": "GET", "url": "{{url}}usuarios/1" }
-        },
-        {
-          "name": "Actualizar usuario",
-          "request": {
-            "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n    \"name\": \"Admin Actualizado\"\n}" },
-            "url": "{{url}}usuarios/1"
-          }
-        },
-        {
-          "name": "Eliminar usuario",
-          "request": { "method": "DELETE", "url": "{{url}}usuarios/1" }
-        }
-      ]
-    }
-  ]
+	"info": {
+		"_postman_id": "321246d1-7c7d-4d89-94ed-72dc2ac6633a",
+		"name": "Prueba tecnica sinergia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46141027",
+		"_collection_link": "https://alejo-4049122.postman.co/workspace/alejo's-Workspace~0ef0dcc0-96a3-4421-8315-89b6dfd126bd/collection/46141027-321246d1-7c7d-4d89-94ed-72dc2ac6633a?action=share&source=collection_link&creator=46141027"
+	},
+	"item": [
+		{
+			"name": "Departamentos",
+			"item": [
+				{
+					"name": "Listar departamentos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}departamentos",
+							"host": [
+								"{{url}}departamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear departamento",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Meta\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}departamentos",
+							"host": [
+								"{{url}}departamentos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar departamento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}departamentos/1",
+							"host": [
+								"{{url}}departamentos"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar departamento",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Antioquia Actualizado\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}departamentos/1",
+							"host": [
+								"{{url}}departamentos"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar departamento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}departamentos/1",
+							"host": [
+								"{{url}}departamentos"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Municipios",
+			"item": [
+				{
+					"name": "Listar municipios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}municipios",
+							"host": [
+								"{{url}}municipios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear municipio",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"departamento_id\": 1,\n    \"nombre\": \"Medellín\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}municipios",
+							"host": [
+								"{{url}}municipios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar municipio",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}municipios/1",
+							"host": [
+								"{{url}}municipios"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar municipio",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Bello\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}municipios/1",
+							"host": [
+								"{{url}}municipios"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar municipio",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}municipios/1",
+							"host": [
+								"{{url}}municipios"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tipos de documento",
+			"item": [
+				{
+					"name": "Listar tipos de documento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}tipos-documento",
+							"host": [
+								"{{url}}tipos-documento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear tipo de documento",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Pasaporte\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}tipos-documento",
+							"host": [
+								"{{url}}tipos-documento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar tipo de documento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}tipos-documento/1",
+							"host": [
+								"{{url}}tipos-documento"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar tipo de documento",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Cédula de Extranjería\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}tipos-documento/1",
+							"host": [
+								"{{url}}tipos-documento"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar tipo de documento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}tipos-documento/1",
+							"host": [
+								"{{url}}tipos-documento"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Géneros",
+			"item": [
+				{
+					"name": "Listar géneros",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}generos",
+							"host": [
+								"{{url}}generos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear género",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Masculino\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}generos",
+							"host": [
+								"{{url}}generos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar género",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}generos/1",
+							"host": [
+								"{{url}}generos"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar género",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Femenino\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}generos/1",
+							"host": [
+								"{{url}}generos"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar género",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}generos/1",
+							"host": [
+								"{{url}}generos"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pacientes",
+			"item": [
+				{
+					"name": "Listar pacientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}pacientes",
+							"host": [
+								"{{url}}pacientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear paciente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tipo_documento_id\": 1,\n    \"numero_documento\": 100000999,\n    \"nombre1\": \"Daniel\",\n    \"nombre2\": \"Felipe\",\n    \"apellido1\": \"Torres\",\n    \"apellido2\": \"López\",\n    \"genero_id\": 1,\n    \"departamento_id\": 2,\n    \"municipio_id\": 3,\n    \"correo\": \"daniel@example.com\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}pacientes",
+							"host": [
+								"{{url}}pacientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar paciente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}pacientes/1",
+							"host": [
+								"{{url}}pacientes"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar paciente",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"correo\": \"nuevo@example.com\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}pacientes/1",
+							"host": [
+								"{{url}}pacientes"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar paciente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}pacientes/1",
+							"host": [
+								"{{url}}pacientes"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Listar usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}usuarios",
+							"host": [
+								"{{url}}usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear usuario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Admin\",\n    \"email\": \"admin@example.com\",\n    \"password\": \"1234567890\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}usuarios",
+							"host": [
+								"{{url}}usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}usuarios/1",
+							"host": [
+								"{{url}}usuarios"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar usuario",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Admin Actualizado\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}usuarios/1",
+							"host": [
+								"{{url}}usuarios"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}usuarios/1",
+							"host": [
+								"{{url}}usuarios"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}ping",
+					"host": [
+						"{{url}}ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"admin@sinergia.com\",\r\n  \"password\": \"123Sinergia.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}login",
+					"host": [
+						"{{url}}login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "info user me",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXBpL2xvZ2luIiwiaWF0IjoxNzU5OTM1Njk3LCJleHAiOjE3NTk5MzkyOTcsIm5iZiI6MTc1OTkzNTY5NywianRpIjoiTGxDYUtKb1I3eERGRk83RSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.L--CUrY-BNgICbvfGJtoHf1EdKCIwfdcO4uY0_vpg3A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}me",
+					"host": [
+						"{{url}}me"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:8080/api/"
+		}
+	]
 }
